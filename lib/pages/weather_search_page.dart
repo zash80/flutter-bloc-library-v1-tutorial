@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_v1_tutorial/bloc/bloc.dart';
 import 'package:flutter_bloc_v1_tutorial/data/model/weather.dart';
-
-import 'weather_detail_page.dart';
+import 'package:flutter_bloc_v1_tutorial/main.dart';
 
 class WeatherSearchPage extends StatelessWidget {
   @override
@@ -36,6 +35,7 @@ class WeatherSearchPage extends StatelessWidget {
               } else if (state is WeatherError) {
                 return buildInitialInput();
               }
+              return Container();
             },
           ),
         ),
@@ -75,6 +75,8 @@ class WeatherSearchPage extends StatelessWidget {
           child: Text('See Details'),
           color: Colors.lightBlue[100],
           onPressed: () {
+            Routes.sailor.navigate('/details', params: {'masterWeather': weather});
+            /*
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
@@ -84,7 +86,7 @@ class WeatherSearchPage extends StatelessWidget {
                   ),
                 ),
               ),
-            );
+            );*/
           },
         ),
         CityInputField(),
